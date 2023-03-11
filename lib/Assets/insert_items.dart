@@ -37,38 +37,56 @@ class _InsertItemsState extends State<InsertItems> {
       appBar: AppBar(),
       body: Form(
         key: formKey,
-        child: Card(
-          elevation: 29,
-          child: Column(
-            children: [
-              TextFormField(decoration: const InputDecoration(hintText: "Enter Name"),validator: (value) {
-                if(value==null && value!.isEmpty){
-                  return "Enter Valid Name";
-                }
-              },controller: nameController),
-              TextFormField(decoration: const InputDecoration(hintText: "Enter Image Url"),validator: (value) {
-                if(value==null && value!.isEmpty){
-                  return "Enter Valid Image Url";
-                }
-              },controller: imageController),
-              TextFormField(decoration: const InputDecoration(hintText: "Enter Price"),validator: (value) {
-                if(value==null && value!.isEmpty){
-                  return "Enter Valid Price";
-                }
-              },controller: priceController),
-              TextButton(onPressed: () {
-                if(formKey.currentState!.validate()){
-                  if(widget.map==null){
-                    insertItem().then((value) => Navigator.of(context).pop(true));
-                    print("Insert");
-                  }else{
-                    upDateItem(widget.map!['id']).then((value) => Navigator.of(context).pop(true));
-                    print("Update");
-                    print(widget.map);
-                  }
-                }
-              }, child: Text("Add Item",style: TextStyle(fontSize: 18),))
-            ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0,top: 5,right: 8),
+          child: Card(
+            elevation: 9,
+            child: Container(
+              height: 230,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6.0,right: 6.0,top: 8),
+                    child: TextFormField(decoration: const InputDecoration(hintText: "Enter Name"),validator: (value) {
+                      if(value==null && value!.isEmpty){
+                        return "Enter Valid Name";
+                      }
+                    },controller: nameController),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6.0,right: 6.0,top: 8),
+                    child: TextFormField(decoration: const InputDecoration(hintText: "Enter Image Url"),validator: (value) {
+                      if(value==null && value!.isEmpty){
+                        return "Enter Valid Image Url";
+                      }
+                    },controller: imageController),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6.0,right: 6.0,top: 8),
+                    child: TextFormField(decoration: const InputDecoration(hintText: "Enter Price"),validator: (value) {
+                      if(value==null && value!.isEmpty){
+                        return "Enter Valid Price";
+                      }
+                    },controller: priceController),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6.0,right: 6.0,top: 8),
+                    child: TextButton(onPressed: () {
+                      if(formKey.currentState!.validate()){
+                        if(widget.map==null){
+                          insertItem().then((value) => Navigator.of(context).pop(true));
+                          print("Insert");
+                        }else{
+                          upDateItem(widget.map!['id']).then((value) => Navigator.of(context).pop(true));
+                          print("Update");
+                          print(widget.map);
+                        }
+                      }
+                    }, child: Text("Submit",style: TextStyle(fontSize: 18),)),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),

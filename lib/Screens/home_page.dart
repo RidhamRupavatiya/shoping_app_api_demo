@@ -52,11 +52,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => MyCartPage()),
             );
-          } else if(currentIndex == 3) {
-            setState(() {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoiseColorFit(),));
-            });
-          } else
+          }else
             setState(() {
               currentIndex = index;
             });

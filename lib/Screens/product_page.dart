@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class NoiseColorFit extends StatelessWidget {
-  const NoiseColorFit({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class ProductPage extends StatelessWidget {
+  ProductPage({super.key , this.map});
+  Map? map;
+  // const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +44,16 @@ class NoiseColorFit extends StatelessWidget {
                               )),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 35),
-                          child: Container(
-                            child: Image.asset(
-                              'assets/Images/Noise-colorFit-Qube.webp',
-                              height: 320,
+                          padding: const EdgeInsets.only(left: 2,right: 2),
+                          child: Center(
+                            child: Container(
+                              height: 270,
+                              child: Image.network(
+                                // 'assets/Images/Noise-colorFit-Qube.webp',
+                                map!["image"],
+                                // height: 320,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                         ),
@@ -93,7 +101,8 @@ class NoiseColorFit extends StatelessWidget {
                 children: [
                   Container(
                     child: Text(
-                      'Noise Color Fit Series 6',
+                      // 'Noise Color Fit Series 6',
+                      map!["name"],
                       style: TextStyle(fontSize: 25),
                     ),
                   ),
@@ -125,7 +134,7 @@ class NoiseColorFit extends StatelessWidget {
                   Icon(Icons.currency_rupee, size: 35),
                   Padding(
                     padding: const EdgeInsets.only(left: 2),
-                    child: Text('4,500', style: TextStyle(fontSize: 35)),
+                    child: Text(map!["price"], style: TextStyle(fontSize: 35)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 4),
@@ -141,7 +150,7 @@ class NoiseColorFit extends StatelessWidget {
                             decoration: TextDecoration.lineThrough)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 40),
+                    padding: const EdgeInsets.only(left: 25),
                     child: Text('Available Stock',
                         style: TextStyle(
                             fontSize: 19, fontWeight: FontWeight.bold)),
@@ -165,9 +174,9 @@ class NoiseColorFit extends StatelessWidget {
               child: Row(
                 children: const [
                   Text(
-                    'This is upgradade S6 Sip runs up to 20 percent faster,\n'
-                        'allowing apps to also launch 20 percent faster,\n'
-                        'while maintainng the same all-day 18-hour battery life.',
+                    'This is upgradade S6 Sip runs up to 20 percent\n faster,'
+                        'allowing apps to also launch 20\n percent faster,'
+                        'while maintainng the\n same all-day 18-hour battery life.',
                     style: TextStyle(fontSize: 15),
                   ),
                 ],

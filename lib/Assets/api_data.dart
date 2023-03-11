@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:api_demo/Api/model.dart';
+import 'package:api_demo/Screens/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,55 +31,62 @@ class ApiData extends StatelessWidget {
                   ),
                   itemCount: shopingApi.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 9,
-                      color: Colors.grey.shade200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 20,top: 5,bottom: 5),
-                                child: Text('50 % off',style: TextStyle(fontWeight: FontWeight.bold,),),
-                              ),
-                              CircleAvatar(child: Icon(Icons.favorite,color: Colors.grey.shade400),backgroundColor: Colors.grey.shade200)
-                            ],
-                          ),
-                          Center(
-                            child: Image(
-                              image: NetworkImage(shopingApi[index].image),
-                              fit: BoxFit.fill,
-                              height: 160,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return ProductPage(map: shopingApi[index].toJson(),);
+                        },));
+                      },
+                      child: Card(
+                        elevation: 9,
+                        color: Colors.grey.shade200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 20,top: 5,bottom: 5),
+                                  child: Text('50 % off',style: TextStyle(fontWeight: FontWeight.bold,),),
+                                ),
+                                CircleAvatar(child: Icon(Icons.favorite,color: Colors.grey.shade400),backgroundColor: Colors.grey.shade200)
+                              ],
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 18.0),
-                            child: Text('Name : ${shopingApi[index].name}',
-                                style: TextStyle(fontSize: 18)),
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 17.0),
-                                child: Icon(Icons.currency_rupee,size: 18),
+                            Center(
+                              child: Image(
+                                image: NetworkImage(shopingApi[index].image),
+                                fit: BoxFit.fill,
+                                height: 160,
                               ),
-                              Text(shopingApi[index].price,
-                                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 18.0,),
-                                child: Icon(Icons.currency_rupee,size: 14),
-                              ),
-                              Text("1000",
-                                style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,decoration: TextDecoration.lineThrough),
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: Text('Name : ${shopingApi[index].name}',
+                                  style: TextStyle(fontSize: 18)),
+                            ),
+                            SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 17.0),
+                                  child: Icon(Icons.currency_rupee,size: 18),
+                                ),
+                                Text(shopingApi[index].price,
+                                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0,),
+                                  child: Icon(Icons.currency_rupee,size: 14),
+                                ),
+                                Text("1000",
+                                  style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,decoration: TextDecoration.lineThrough),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),
